@@ -1,0 +1,22 @@
+   @media (max-width: 991.98px) {
+  #navbarCollapse {
+    background-color: #1ABC9C;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-collapse.collapse.show {
+    display: block !important;
+  }
+
+  .navbar-nav .nav-link {
+   
+    padding: 10px 15px;
+  }
+}
+
+/* Estilos para computadoras (mayores a 991.98px) */
+@media (min-width: 992px) {
+  #navbarCollapse {
+    height: 100px; /* Altura fija para escritorio */
+  }
+}
