@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import '../css/style.css'; // Asegúrate de que tu CSS personalizado esté importado
 import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de que Bootstrap esté importado
+import '../css/styleFlotillas.css'; // Asegúrate de que tu CSS personalizado esté importado
 
 
 import '../css/index.css'; // Asegúrate de que tu CSS personalizado esté importado 
 import '../css/bootstrap.min.css'; // Asegúrate de que Bootstrap esté importado
 import "../scss/bootstrap.scss"; // Asegúrate de que tu CSS personalizado esté importado
-import "../lib/owlcarousel/assets/owl.carousel.min.css"
-import "../lib/animate/animate.min.css"
 const EXPERIENCES = {
   relax: {
     title: 'Relajación Total',
@@ -37,21 +36,11 @@ const EXPERIENCES = {
 };
 
 
-
-// import './index.css'
-
-const Home = () => {
-
+const FlotilllasAdmin = () => {
 const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState(null);
 
   const handleClose = () => setSelected(null);
-    useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://static.elfsight.com/platform/platform.js';
-    script.defer = true;
-    document.body.appendChild(script);
-  }, []);
 
   useEffect(() => {
     // Simula carga, o aquí podrías hacer fetch de datos
@@ -72,13 +61,8 @@ const [loading, setLoading] = useState(true)
       </div>
     )
   }
-  return (
+  return(
     <>
-
-      <div className="container-fluid bg-white p-0 min-vh-100">
-        <div className="container-fluid bg-white p-0 min-vh-100">
-
-{/* <!-- Header Start --> */}
 <div
   className="container-fluid px-0"
   style={{
@@ -91,11 +75,11 @@ const [loading, setLoading] = useState(true)
     {/* <!-- Logo grande (solo en pantallas grandes) --> */}
     <div className="col-lg-3 d-none d-lg-block">
       <Link
-        to="/"
+        to="/admin"
         className="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center"
       >
         <img
-          src="./img/logoGRtransfer.png"
+          src="../img/logoGRtransfer.png"
           className="img-fluid w-50"
           alt="Logo GR Transfer"
         />
@@ -135,7 +119,7 @@ const [loading, setLoading] = useState(true)
         {/* <!-- Logo móvil --> */}
         <div className="d-flex justify-content-between align-items-center w-100 d-lg-none px-3 py-2">
           <a href="index.html" className="navbar-brand m-0">
-            <img src="img/logoGRtransfer.png" alt="Logo móvil" style={{ height: '40px' }} />
+            <img src="../img/logoGRtransfer.png" alt="Logo móvil" style={{ height: '40px' }} />
           </a>
           <button
             className="navbar-toggler"
@@ -150,23 +134,23 @@ const [loading, setLoading] = useState(true)
         {/* <!-- Menú de navegación --> */}
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav mx-auto py-2 text-uppercase fw-semibold">
-            <a href="index.html" className="nav-item nav-link active text-primary" style={{ fontSize: '1.2rem' }}>
+            <Link to="/admin" className="nav-item nav-link " style={{ fontSize: '1.2rem' }}>
               Inicio
-            </a>
-            <Link to="/nosotros" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+            </Link>
+            <Link to="/admin/nosotrosAdmin" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
               Nosotros
             </Link>
-            <Link to="/flotillas" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+            <Link to="/admin/flotillasAdmin" className="nav-item nav-link active text-primary" style={{ fontSize: '1.2rem' }}>
               Flotillas
             </Link>
-            <Link to="/destinos" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+            <Link to="/admin/destinosAdmin" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
               Destinos
             </Link>
-            <Link to="/contacto" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+            <Link to="/admin/contactoAdmin" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
               Contacto
             </Link>
-            <Link to="/reserva" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
-              Reservar
+            <Link to="/admin/dashboard" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+              Dashboard
             </Link>
           </div>
         </div>
@@ -211,152 +195,29 @@ const [loading, setLoading] = useState(true)
     </div>
   </div>
 </div>
-{/* <!-- Header End --> */}
+        {/* <!-- Header End --> */}
 
 
-        {/* <!-- Carousel Start --> */}
-<div className="container-fluid p-0 mb-5">
-  <div id="header-carousel" className="carousel slide" data-bs-ride="carousel">
-    <div className="carousel-inner">
+        {/* <!-- Page Header Start --> */}
+    <div className="container-fluid page-header mb-5 p-0 position-relative" style={{backgroundImage: 'url(../img/bg-servicios.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+    {/* <!-- Capa oscura encima de la imagen --> */}
+    <div className="position-absolute top-0 start-0 w-100 h-100" style={{backgroundColor: 'rgba(19, 19, 50, 0.603)', zIndex: 1}}></div>
 
-      {/* Slide 1 */}
-      <div className="carousel-item active position-relative">
-        <img
-          className="w-100"
-          src="img/indeximg-bg-1.jpg"
-          style={{
-            backgroundColor: 'rgba(19, 19, 50, 0.603)',
-            zIndex: 1,
-            height: '100vh'
-          }}
-          alt="Image"
-        />
-<div
-  className="carousel-caption d-flex flex-column align-items-center justify-content-center"
-  style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    zIndex: 2,
-    background: 'rgba(19, 19, 50, 0.603)' // sombreado azul oscuro
-  }}
->
-  <div className="p-3" style={{ maxWidth: '700px' }}>
-    <h6 className="section-title text-white text-uppercase mb-3 animated slideInDown">
-      Traslados Privados
-    </h6>
-    <h1 className="display-3 text-white mb-4 animated slideInDown">
-      Movilidad Confiable en Las Terrenas
-    </h1>
-    <a
-      href="https://wa.me/18098895003"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="btn py-md-3 px-md-5 me-3 animated slideInLeft"
-      style={{ backgroundColor: '#FCEED6', color: '#2C3E50' }}
-    >
-      Reserve ahora
-    </a>
-    <a
-      href="room.html"
-      className="btn btn-light py-md-3 px-md-5 animated slideInRight"
-      style={{
-        backgroundColor: '#1ABC9C',
-        color: '#FCEED6',
-        borderColor: '#1ABC9C'
-      }}
-    >
-      Otros destinos
-    </a>
-  </div>
-</div>
-
-      </div>
-
-      {/* Slide 2 */}
-      <div className="carousel-item position-relative">
-        <img
-          className="w-100"
-          src="img/indexbg-img2.jpg"
-          style={{
-            backgroundColor: 'rgba(19, 19, 50, 0.603)',
-            zIndex: 1,
-            height: '100vh'
-          }}
-          alt="Image"
-        />
-        <div className="carousel-caption d-flex flex-column align-items-center justify-content-center w-100 h-100">
-          <div className="p-3" style={{ maxWidth: '700px' }}>
-            <h6 className="section-title text-white text-uppercase mb-3 animated slideInDown">
-              Servicio Premium
-            </h6>
-            <h1 className="display-3 text-white mb-4 animated slideInDown">
-              Comodidad y Seguridad a Tu Alcance
-            </h1>
-            <a
-              href="https://wa.me/18098895003"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn py-md-3 px-md-5 me-3 animated slideInLeft"
-              style={{ backgroundColor: '#FCEED6', color: '#2C3E50' }}
-            >
-              Solicitar ahora
-            </a>
-            {/* 
-            <a
-              href=""
-              className="btn btn-light py-md-3 px-md-5 animated slideInRight"
-              style={{
-                backgroundColor: '#1ABC9C',
-                color: '#FCEED6',
-                borderColor: '#1ABC9C'
-              }}
-            >
-              Más opciones
-            </a>
-            */}
-          </div>
+    <div className="container-fluid page-header-inner py-5 position-relative" style={{zIndex: 2}}>
+        <div className="container text-center pb-5">
+            <h1 className="display-3 text-white mb-3 animated slideInDown">Flotillas</h1>
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb justify-content-center text-uppercase">
+                    <li className="breadcrumb-item"><a href="#">Inicio</a></li>
+                    <li className="breadcrumb-item"><a href="#">Paginas</a></li>
+                    <li className="breadcrumb-item text-white active" aria-current="page">Flotillas</li>
+                </ol>
+            </nav>
         </div>
-      </div>
     </div>
-
-    {/* Controles del carousel */}
-    <button
-      className="carousel-control-prev"
-      type="button"
-      data-bs-target="#header-carousel"
-      data-bs-slide="prev"
-    >
-      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span className="visually-hidden">Previous</span>
-    </button>
-    <button
-      className="carousel-control-next"
-      type="button"
-      data-bs-target="#header-carousel"
-      data-bs-slide="next"
-    >
-      <span className="carousel-control-next-icon" aria-hidden="true"></span>
-      <span className="visually-hidden">Next</span>
-    </button>
-  </div>
 </div>
-
-
-
-        {/* <!-- Carousel End --> */}
-
-
-        {/* <!-- Booking Start --> */}
-{/* <!-- SECCIÓN HERO O PRINCIPAL (div anterior al de las tarjetas) --> */}
-{/* <div className="container-fluid px-0 position-relative">
-<!-- <img src="img/banner.jpg" alt="" className="img-fluid w-100" style="height: 400px; object-fit: cover;"> --> */}
-
-
-  {/* <!-- TARJETAS SUPERPUESTAS --> */}
-<div className="container position-relative" id="featureCardsContainer" style={{ zIndex: 10 }}>
+     {/* <!-- TARJETAS SUPERPUESTAS --> */}
+<div className="container position-relative" id="featureCardsContainer" style={{zIndex: 10}}>
 
     <div className="row g-4">
 
@@ -393,13 +254,75 @@ const [loading, setLoading] = useState(true)
       </div>
 
     </div>
-  </div>
+</div>
+        <div id="imageModal">
+    <span className="close-btn" onClick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="Zoom Imagen"/>
 </div>
 
-{/* <!-- SECCIÓN QUE VIENE DESPUÉS (opcional) --> */}
-<div className="container-fluid py-5 mt-5">
-  {/* <!-- contenido siguiente --> */}
+        {/* <!-- Service Start --> */}
+ <div className="container-xxl py-5">
+    <div className="container">
+        <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 className="section-title text-center text-primary text-uppercase">Nuestra Flotilla</h6>
+            <h1 className="mb-5">Explora Nuestros <span className="text-primary text-uppercase">Vehículos</span></h1>
+        </div>
+        <div className="row g-4">
+
+            {/* <!-- Vehículo 1 --> */}
+           <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div className="vehicle-card position-relative">
+                    <div className="vehicle-badge">12 pasajeros</div>
+                    <img src="../img/flotilla-1.jpg" className="vehicle-image" onclick="openModal(this)" alt="Toyota Hiace"/>
+                    <div className="vehicle-details">
+                        <h5>Toyota Hiace</h5>
+                        <p><i className="fa fa-snowflake"></i> A/C &nbsp; <i className="fa fa-wifi"></i> Wi-Fi</p>
+                        <a href="https://wa.me/18098895003" target="_blank">
+                          <button className="btn btn-sm btn-reservar px-4 text-white">Reservar ahora</button>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+
+       {/* <!-- Tarjeta 2 --> */}
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div className="vehicle-card position-relative">
+                    <div className="vehicle-badge">5 pasajeros</div>
+                    <img src="../img/flotilla-2.jpg" className="vehicle-image" onclick="openModal(this)" alt="Hyundai H1"/>
+                    <div className="vehicle-details">
+                        <h5>Toyota</h5>
+                        <p><i className="fa fa-bluetooth"></i> Bluetooth &nbsp; <i className="fa fa-road"></i> Viajes largos</p>
+                        <a href="https://wa.me/18098895003" target="_blank">
+                          <button className="btn btn-sm btn-reservar px-4 text-white">Reservar ahora</button>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            {/* <!-- Tarjeta 3 --> */}
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div className="vehicle-card position-relative">
+                    <div className="vehicle-badge">12 pasajeros</div>
+                    <img src="../img/flotilla-3.jpg" className="vehicle-image" onclick="openModal(this)" alt="SUV Premium"/>
+                    <div className="vehicle-details">
+                        <h5>SUV Premium</h5>
+                        <p><i className="fa fa-user-tie"></i> Chofer &nbsp; <i className="fa fa-car-side"></i> Lujo</p>
+                        <a href="https://wa.me/18098895003" target="_blank">
+                          <button className="btn btn-sm btn-reservar px-4 text-white">Reservar ahora</button>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+        {/* <!-- Service End --> */}
 
    {/* SECCIÓN PRINCIPAL */}
       <div className="container my-5 py-5 wow fadeIn" data-wow-delay="0.2s">
@@ -517,13 +440,19 @@ const [loading, setLoading] = useState(true)
           cursor: pointer;
         }
       `}</style>
+
 {/* <!-- Inicio Modal --> */}
-    {/* <div class="elfsight-app-5841fa61-2d8d-4b73-8871-d29d6ee35e27" data-elfsight-app-lazy></div> */}
+
+
+          <div style={{ height: '50px', backgroundColor: '#f8f9fa' }}></div>
+                    <div className="elfsight-app-5841fa61-2d8d-4b73-8871-d29d6ee35e27" data-elfsight-app-lazy></div>
+                    <a href="#" className="btn btn-lg btn-lg-square border-0 back-to-top" style={{ backgroundColor: '#1ABC9C', color: 'white' }}>
+    <i className="fa fa-arrow-up"></i>
+</a>
+
 
         {/* <!-- Footer Start --> */}
-
-        {/* <!-- Footer Start --> */}
-       <div className="container-fluid  text-light footer wow fadeIn" data-wow-delay="0.1s" style={{ backgroundColor: '#2C3E50' }}>
+     <div className="container-fluid  text-light footer wow fadeIn" data-wow-delay="0.1s" style={{ backgroundColor: '#2C3E50' }}>
             <div className="container pb-5">
                 <div className="row g-5">
                <div className="col-md-6 col-lg-4">
@@ -550,14 +479,14 @@ const [loading, setLoading] = useState(true)
                     </div>
                     <div className="col-lg-5 col-md-12">
                         <div className="row gy-5 g-4">
-                          {/* <div className="col-md-6">
+                            {/* <!-- <div className="col-md-6">
                                 <h6 className="section-title text-start text-primary text-uppercase mb-4">Company</h6>
                                 <a className="btn btn-link" href="">About Us</a>
                                 <a className="btn btn-link" href="">Contact Us</a>
                                 <a className="btn btn-link" href="">Privacy Policy</a>
                                 <a className="btn btn-link" href="">Terms & Condition</a>
                                 <a className="btn btn-link" href="">Support</a>
-                            </div>  */}
+                            </div> --> */}
                             <div className="col-md-6">
                                 <h6 className="section-title text-start text-primary text-uppercase mb-4">Servicios</h6>
                                 <a className="btn btn-link" href="">recogida en el aeropuerto</a>
@@ -575,9 +504,8 @@ const [loading, setLoading] = useState(true)
                 <div className="copyright">
                     <div className="row">
                         <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a className="border-bottom" href="#">GR TRANSFER</a>, All Right Reserved.
-
-							{/* <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/}
+                            &copy; <a className="border-bottom" href="#">GR TRANSFER</a>, All Right Reserved. 
+                            
                         </div>
                         <div className="col-md-6 text-center me-auto">
                             <div className="footer-menu">
@@ -588,17 +516,13 @@ const [loading, setLoading] = useState(true)
                 </div>
             </div>
         </div>
-        {/* Footer End  */}
-
-        {/* <!-- Back to Top --> */}
+        {/* <!-- Footer End --> */}
 
 
-
-
-    </div>
-
+  
     </>
   )
+
 }
 
-export default Home
+export default FlotilllasAdmin

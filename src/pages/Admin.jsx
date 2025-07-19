@@ -40,7 +40,7 @@ const EXPERIENCES = {
 
 // import './index.css'
 
-const Home = () => {
+const Admin = () => {
 
 const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState(null);
@@ -150,23 +150,23 @@ const [loading, setLoading] = useState(true)
         {/* <!-- Menú de navegación --> */}
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav mx-auto py-2 text-uppercase fw-semibold">
-            <a href="index.html" className="nav-item nav-link active text-primary" style={{ fontSize: '1.2rem' }}>
+            <Link to="/admin" className="nav-item nav-link active text-primary" style={{ fontSize: '1.2rem' }}>
               Inicio
-            </a>
-            <Link to="/nosotros" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+            </Link>
+            <Link to="/admin/nosotrosAdmin" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
               Nosotros
             </Link>
-            <Link to="/flotillas" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+            <Link to="/admin/flotillasAdmin" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
               Flotillas
             </Link>
-            <Link to="/destinos" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+            <Link to="/admin/destinosAdmin" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
               Destinos
             </Link>
-            <Link to="/contacto" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+            <Link to="/admin/contactoAdmin" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
               Contacto
             </Link>
-            <Link to="/reserva" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
-              Reservar
+            <Link to="/admin/dashboard" className="nav-item nav-link" style={{ fontSize: '1.2rem' }}>
+              Dashboard
             </Link>
           </div>
         </div>
@@ -577,7 +577,7 @@ const [loading, setLoading] = useState(true)
                         <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a className="border-bottom" href="#">GR TRANSFER</a>, All Right Reserved.
 
-							{/* <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/}
+                            {/* <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/}
                         </div>
                         <div className="col-md-6 text-center me-auto">
                             <div className="footer-menu">
@@ -601,4 +601,4 @@ const [loading, setLoading] = useState(true)
   )
 }
 
-export default Home
+export default Admin
