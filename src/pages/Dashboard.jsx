@@ -449,9 +449,9 @@ export default function Dashboard() {
       <button onClick={exportarExcel} className="btn btn-success">
         📥 Exportar Excel
       </button>
-      <button onClick={cerrarSesion} className="btn btn-danger">
+      {/* <button onClick={cerrarSesion} className="btn btn-danger">
         🔓 Cerrar sesión
-      </button>
+      </button> */}
     </div>
 
     {/* Tarjetas resumen */}
