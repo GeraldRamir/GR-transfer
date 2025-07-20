@@ -5,43 +5,45 @@ import { Link } from 'react-router-dom'; // Asegúrate de importar esto
 import Dashboard from './Dashboard';
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
 
-export default function ProtectedRoute({ children }) {
+export default function ProtectedRoute() {
   const [clave, setClave] = useState('');
   const [autorizado, setAutorizado] = useState(false);
   const [hayClave, setHayClave] = useState(false);
   const [loadingClave, setLoadingClave] = useState(true); // nuevo estado loading
+  
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const verificarClaveExistente = async () => {
-      try {
-        const res = await fetch(`${BACKEND_URL}/api/clave`);
-        if (!res.ok) throw new Error('Error al obtener clave');
-        const data = await res.json();
+useEffect(() => {
+  const verificarClaveExistente = async () => {
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/clave`);
+      if (!res.ok) throw new Error('Error al obtener clave');
+      const data = await res.json();
 
-        if (data.existe !== undefined) {
-          setHayClave(data.existe);
-        } else if (Array.isArray(data)) {
-          setHayClave(data.length > 0);
-        } else {
-          setHayClave(false);
-        }
-      } catch (error) {
-        console.error('Error verificando clave:', error);
+      if (data.existe !== undefined) {
+        setHayClave(data.existe);
+      } else if (Array.isArray(data)) {
+        setHayClave(data.length > 0);
+      } else {
         setHayClave(false);
-      } finally {
-        setLoadingClave(false); // termina carga
       }
-    };
 
-    verificarClaveExistente();
-
-    const acceso = localStorage.getItem('accesoAdmin');
-    if (acceso === 'true') {
-      setAutorizado(true);
-      navigate('/admin/dashboard'); 
+      // Solo después de verificar la clave, leemos localStorage
+      const acceso = localStorage.getItem('accesoAdmin');
+      if (acceso === 'true') {
+        setAutorizado(true);
+      }
+    } catch (error) {
+      console.error('Error verificando clave:', error);
+      setHayClave(false);
+    } finally {
+      setLoadingClave(false);
     }
-  }, [navigate]);
+  };
+
+  verificarClaveExistente();
+}, []);
+
 
   // Si está cargando la clave aún, no mostrar nada o un spinner
   if (loadingClave) {
