@@ -557,7 +557,7 @@ if (!autorizado) {
             <div className="d-flex justify-content-between align-items-start mb-2">
               <div>
                 <h5 className="fw-bold mb-1">{r.nombre}</h5>
-                <small className="text-muted">{r.correo}</small>
+                <small className="text-muted">{r.email}</small>
               </div>
               <button className="btn btn-sm btn-outline-danger" onClick={() => eliminarReserva(r._id)}>
                 Eliminar

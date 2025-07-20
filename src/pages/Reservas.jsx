@@ -17,7 +17,7 @@ const Reservas = () => {
 
     const [form, setForm] = useState({
     nombre: '',
-    correo: '',
+    email: '',
     telefono: '',
     destino: '',
     fecha: '',
@@ -48,7 +48,7 @@ const handleSubmit = async (e) => {
 
   if (
     !form.nombre.trim() ||
-    !form.correo.trim() ||
+    !form.email.trim() ||
     !form.telefono.trim() ||
     !form.destino.trim() ||
     !form.fecha.trim() ||
@@ -81,7 +81,7 @@ const handleSubmit = async (e) => {
 
     setForm({
       nombre: '',
-      correo: '',
+      email: '',
       telefono: '',
       destino: '',
       fecha: '',
@@ -260,8 +260,8 @@ const handleSubmit = async (e) => {
           <input type="text" className="form-control" name="nombre" onChange={handleChange} />
         </div>
         <div className="col-md-6">
-          <label className="form-label">Correo</label>
-          <input type="email" className="form-control" name="correo" onChange={handleChange} />
+          <label className="form-label">email</label>
+          <input type="email" className="form-control" name="email" onChange={handleChange} />
         </div>
         <div className="col-md-6">
           <label className="form-label">Teléfono</label>
