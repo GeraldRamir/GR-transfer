@@ -126,7 +126,7 @@ export default function ProtectedRoute({ children }) {
               placeholder="Ingrese nueva clave"
               className="form-control mb-3"
             />
-            <button type="submit" className="btn btn-danger w-100">Crear clave</button>
+            <button type="submit" className="btn btn-success w-100">Crear clave</button>
           </form>
         </div>
       </div>
@@ -153,12 +153,7 @@ export default function ProtectedRoute({ children }) {
     );
   }
 
-  return (
-    <>
-      <button className="btn btn-danger mb-3" onClick={cerrarSesion}>Cerrar sesión</button>
-      {children}
-    </>
-  );
+
 
   // ... funciones crearClave, verificarClave, cerrarSesion igual que antes
 }
