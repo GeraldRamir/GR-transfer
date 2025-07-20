@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import { Link } from 'react-router-dom'; // Asegúrate de importar esto
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
 
 export default function ProtectedRoute({ children }) {
@@ -102,7 +102,7 @@ export default function ProtectedRoute({ children }) {
         setAutorizado(true);
         toast.success('Acceso concedido');
         setClave('');
-        navigate('/admin/dashboard'); // Redirección al dashboard
+        // navigate('/admin/dashboard'); // Redirección al dashboard
       } else {
         toast.error(data.mensaje || 'Clave incorrecta');
       }
@@ -127,34 +127,37 @@ export default function ProtectedRoute({ children }) {
               placeholder="Ingrese nueva clave"
               className="form-control mb-3"
             />
-            <button type="submit" className="btn btn-danger w-100">Crear clave</button>
+            <button type="submit" className="btn btn-warning w-100">Crear clave</button>
           </form>
         </div>
       </div>
     );
   }
 
-  if (!autorizado) {
-    return (
-      <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
-        <div className="card shadow p-4 w-100" style={{ maxWidth: '400px' }}>
-          <h4 className="text-center mb-4">🔐 Acceso Admin</h4>
-          <form onSubmit={verificarClave}>
-            <input
-              type="password"
-              value={clave}
-              onChange={(e) => setClave(e.target.value)}
-              placeholder="Ingrese clave"
-              className="form-control mb-3"
-            />
-            <button type="submit" className="btn btn-primary w-100">Entrar</button>
-          </form>
+if (!autorizado) {
+  return (
+    <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
+      <div className="card shadow p-4 w-100" style={{ maxWidth: '400px' }}>
+        <h4 className="text-center mb-4">🔐 Acceso Admin</h4>
+        <form onSubmit={verificarClave}>
+          <input
+            type="password"
+            value={clave}
+            onChange={(e) => setClave(e.target.value)}
+            placeholder="Ingrese clave"
+            className="form-control mb-3"
+          />
+          <button type="submit" className="btn btn-primary w-100">Entrar</button>
+        </form>
+        <div className="text-center mt-3">
+          <Link to="/admin/dashboard" className="text-decoration-none text-secondary">
+            ← Volver al inicio
+          </Link>
         </div>
       </div>
-    );
-  }
-
-
+    </div>
+  );
+}
 
   // ... funciones crearClave, verificarClave, cerrarSesion igual que antes
 }
