@@ -543,35 +543,38 @@ if (!autorizado) {
     </div>
 
     {/* Lista de reservas */}
-    <div className="card shadow border-0">
-      <div className="card-header bg-primary text-white">📝 Lista de Reservas</div>
-      <div className="p-4">
-        <div className="row g-4">
-          {reservas.map((r, index) => (
-            <div key={r._id} className="col-md-6">
-              <div className={`p-4 rounded shadow-sm text-dark border-start border-5 
-                ${index % 4 === 0 ? 'bg-danger-subtle border-danger' :
-                  index % 4 === 1 ? 'bg-warning-subtle border-warning' :
-                  index % 4 === 2 ? 'bg-success-subtle border-success' :
-                  'bg-info-subtle border-info'}`}>
-                <div className="d-flex justify-content-between align-items-start mb-2">
-                  <div>
-                    <h5 className="fw-bold mb-1">{r.nombre}</h5>
-                    <small className="text-muted">{r.email}</small>
-                  </div>
-                  <button className="btn btn-sm btn-outline-danger" onClick={() => eliminarReserva(r._id)}>
-                    Eliminar
-                  </button>
-                </div>
-                <p className="mb-1">📅 <strong>{r.fecha}</strong></p>
-                <p className="mb-1">👥 {r.personas} persona(s)</p>
-                <p className="fst-italic text-muted">{r.mensaje || 'Sin mensaje adicional'}</p>
+<div className="card shadow border-0">
+  <div className="card-header bg-primary text-white">📝 Lista de Reservas</div>
+  <div className="p-4">
+    <div className="row g-4">
+      {reservas.map((r, index) => (
+        <div key={r._id} className="col-md-6">
+          <div className={`p-4 rounded shadow-sm text-dark border-start border-5 
+            ${index % 4 === 0 ? 'bg-danger-subtle border-danger' :
+              index % 4 === 1 ? 'bg-warning-subtle border-warning' :
+              index % 4 === 2 ? 'bg-success-subtle border-success' :
+              'bg-info-subtle border-info'}`}>
+            <div className="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <h5 className="fw-bold mb-1">{r.nombre}</h5>
+                <small className="text-muted">{r.correo}</small>
               </div>
+              <button className="btn btn-sm btn-outline-danger" onClick={() => eliminarReserva(r._id)}>
+                Eliminar
+              </button>
             </div>
-          ))}
+            <p className="mb-1">📞 <a href={`https://wa.me/${r.telefono}`} target="_blank" rel="noopener noreferrer">{r.telefono}</a></p>
+            <p className="mb-1">✈️ Destino: <strong>{r.destino}</strong></p>
+            <p className="mb-1">📅 <strong>{r.fecha}</strong></p>
+            <p className="mb-1">👥 {r.personas} persona(s)</p>
+            <p className="fst-italic text-muted">{r.mensaje || 'Sin mensaje adicional'}</p>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
+  </div>
+</div>
+
   </div>
 </div>
 
