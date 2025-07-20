@@ -119,60 +119,66 @@ export default function Dashboard() {
   // }, []);
 
   // Verificar si hay clave y si hay acceso guardado
-  useEffect(() => {
-    const verificarClaveExistente = async () => {
-      try {
-        const res = await fetch(`${BACKEND_URL}/api/clave`);
-        if (!res.ok) throw new Error('Error al obtener clave');
-        const data = await res.json();
+useEffect(() => {
+  const verificarClaveExistente = async () => {
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/clave`);
+      if (!res.ok) throw new Error('Error al obtener clave');
+      const data = await res.json();
 
-        if (data.existe !== undefined) {
-          setHayClave(data.existe);
-        } else if (Array.isArray(data)) {
-          setHayClave(data.length > 0);
-        } else {
-          setHayClave(false);
-        }
-      } catch (error) {
-        console.error('Error verificando clave:', error);
+      if (data.existe !== undefined) {
+        setHayClave(data.existe);
+      } else if (Array.isArray(data)) {
+        setHayClave(data.length > 0);
+      } else {
         setHayClave(false);
       }
-    };
 
-    verificarClaveExistente();
+      // ✅ Solo después de verificar la existencia
+      const acceso = localStorage.getItem('accesoAdmin');
+      if (acceso === 'true') setAutorizado(true);
 
-    const acceso = localStorage.getItem('accesoAdmin');
-    if (acceso === 'true') setAutorizado(true);
-  }, []);
-
-  // Crear clave nueva
-  const crearClave = async (e) => {
-    e.preventDefault();
-    if (!clave.trim()) {
-      toast.error('La clave no puede estar vacía');
-      return;
-    }
-
-    try {
-      const res = await fetch(`${BACKEND_URL}/api/clave`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ clave }),
-      });
-
-      if (res.ok) {
-        toast.success('Clave creada correctamente');
-        setHayClave(true);
-        setClave('');
-      } else {
-        const data = await res.json();
-        toast.error(data.mensaje || 'Error al crear clave');
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error('Error de conexión al crear clave');
+    } catch (error) {
+      console.error('Error verificando clave:', error);
+      setHayClave(false);
     }
   };
+
+  verificarClaveExistente();
+}, []);
+
+
+  // Crear clave nueva
+const crearClave = async (e) => {
+  e.preventDefault();
+  if (!clave.trim()) {
+    toast.error('La clave no puede estar vacía');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/clave`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clave }),
+    });
+
+    if (res.ok) {
+      toast.success('✅ Clave creada correctamente');
+      localStorage.setItem('accesoAdmin', 'true'); // <-- ✅ Guarda el acceso
+      setHayClave(true);
+      setAutorizado(true); // <-- ✅ Ya estás autorizado
+      setClave('');
+    } else {
+      const data = await res.json();
+      toast.error(data.mensaje || 'Error al crear clave');
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error('Error de conexión al crear clave');
+  }
+};
+
 
   // Verificar clave para acceso
   const verificarClave = async (e) => {
