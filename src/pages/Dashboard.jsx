@@ -218,10 +218,12 @@ export default function Dashboard() {
       if (!res.ok) throw new Error('Error al obtener reservas');
       const data = await res.json();
       setReservas(data);
+      
     } catch (err) {
       console.error('Error:', err);
       toast.error('Error al cargar reservas');
     }
+
   };
 
   // Escuchar reservas y recibir nuevas desde socket
@@ -234,6 +236,7 @@ export default function Dashboard() {
       setReservas((prev) => [nueva, ...prev]);
       toast.info(`Nueva reserva de ${nueva.nombre}`);
     });
+    
 
     return () => {
       socket.off('nueva-reserva');
