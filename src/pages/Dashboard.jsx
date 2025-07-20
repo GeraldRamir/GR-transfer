@@ -39,21 +39,6 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 
-
-export default function Dashboard() {
-  const [reservas, setReservas] = useState([]);
-  const [clave, setClave] = useState('');
-  const [autorizado, setAutorizado] = useState(false);
-  const [hayClave, setHayClave] = useState(false);
-  const [mostrarCrear, setMostrarCrear] = useState(false); // controla qué formulario mostrar
-
-useEffect(() => {
-  const yaSuscrito = localStorage.getItem('yaSuscrito');
-  if (!yaSuscrito) {
-    registrarServiceWorkerYSuscribir();
-  }
-}, []);
-
 function registrarServiceWorkerYSuscribir() {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.register('/sw.js')
@@ -102,6 +87,21 @@ function registrarServiceWorkerYSuscribir() {
     console.warn('Push messaging no está soportado en este navegador');
   }
 }
+
+export default function Dashboard() {
+  const [reservas, setReservas] = useState([]);
+  const [clave, setClave] = useState('');
+  const [autorizado, setAutorizado] = useState(false);
+  const [hayClave, setHayClave] = useState(false);
+  const [mostrarCrear, setMostrarCrear] = useState(false); // controla qué formulario mostrar
+
+useEffect(() => {
+  const yaSuscrito = localStorage.getItem('yaSuscrito');
+  if (!yaSuscrito) {
+    registrarServiceWorkerYSuscribir();
+  }
+}, []);
+
 
 
   //   useEffect(() => {
@@ -320,8 +320,8 @@ if (!autorizado) {
           </button>
         </form>
 
-        {/* Enlace para cambiar de modo */}
-        {(hayClave || mostrarCrear) && (
+        {/* Enlace para cambiar entre modos */}
+        {hayClave && (
           <button
             type="button"
             className="btn btn-link mt-3 w-100"
@@ -334,6 +334,7 @@ if (!autorizado) {
     </div>
   );
 }
+
   return (
     <>
     {/* <!-- Header Start --> */}
@@ -488,9 +489,9 @@ if (!autorizado) {
       <button onClick={exportarExcel} className="btn btn-success">
         📥 Exportar Excel
       </button>
-      <button onClick={cerrarSesion} className="btn btn-danger">
+      {/* <button onClick={cerrarSesion} className="btn btn-danger">
         🔓 Cerrar sesión
-      </button>
+      </button> */}
     </div>
 
     {/* Tarjetas resumen */}
