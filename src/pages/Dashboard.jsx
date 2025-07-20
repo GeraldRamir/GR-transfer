@@ -279,25 +279,25 @@ const crearClave = async (e) => {
   }, {});
   const dataGrafico = Object.keys(graficoData).map(fecha => ({ fecha, personas: graficoData[fecha] }));
 
-  if (!hayClave) {
-  return (
-    <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
-      <div className="card shadow p-4 w-100" style={{ maxWidth: '400px' }}>
-        <h4 className="text-center mb-4">🛠 Crear clave de administrador</h4>
-        <form onSubmit={crearClave}>
-          <input
-            type="password"
-            value={clave}
-            onChange={(e) => setClave(e.target.value)}
-            placeholder="Ingrese nueva clave"
-            className="form-control mb-3"
-          />
-          <button type="submit" className="btn btn-success w-100">Crear clave</button>
-        </form>
-      </div>
-    </div>
-  );
-}
+//   if (!hayClave) {
+//   return (
+//     <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
+//       <div className="card shadow p-4 w-100" style={{ maxWidth: '400px' }}>
+//         <h4 className="text-center mb-4">🛠 Crear clave de administrador</h4>
+//         <form onSubmit={crearClave}>
+//           <input
+//             type="password"
+//             value={clave}
+//             onChange={(e) => setClave(e.target.value)}
+//             placeholder="Ingrese nueva clave"
+//             className="form-control mb-3"
+//           />
+//           <button type="submit" className="btn btn-success w-100">Crear clave</button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
 
 
   if (!autorizado) {
