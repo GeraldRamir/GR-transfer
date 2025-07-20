@@ -50,6 +50,7 @@ function registrarServiceWorkerYSuscribir() {
             if (subscription) {
               return subscription;
             }
+            // Solicitar permiso y suscribir
             return registration.pushManager.subscribe({
               userVisibleOnly: true,
               applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
@@ -57,6 +58,9 @@ function registrarServiceWorkerYSuscribir() {
           });
       })
       .then(subscription => {
+        console.log('Suscripción obtenida:', subscription);
+
+        // Serializar correctamente la suscripción con las keys en base64
         const subscriptionJson = {
           endpoint: subscription.endpoint,
           expirationTime: subscription.expirationTime,
@@ -66,19 +70,22 @@ function registrarServiceWorkerYSuscribir() {
           }
         };
 
-        return fetch(`${import.meta.env.VITE_BACKEND_URL}/api/subscribe`, {
+        // Enviar la suscripción serializada al backend
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/subscribe`, {
           method: 'POST',
           body: JSON.stringify(subscriptionJson),
           headers: { 'Content-Type': 'application/json' }
+        })
+        .then(res => {
+          if (res.ok) {
+            console.log('Suscripción enviada correctamente al backend');
+          } else {
+            console.error('Error al enviar suscripción al backend');
+          }
+        })
+        .catch(err => {
+          console.error('Error en fetch suscripción:', err);
         });
-      })
-      .then(res => {
-        if (res.ok) {
-          console.log('Suscripción enviada correctamente al backend');
-          localStorage.setItem('yaSuscrito', 'true');
-        } else {
-          console.error('Error al enviar suscripción al backend');
-        }
       })
       .catch(error => {
         console.error('Error al registrar SW o suscribirse:', error);
@@ -95,12 +102,9 @@ export default function Dashboard() {
   const [hayClave, setHayClave] = useState(false);
   const [mostrarCrear, setMostrarCrear] = useState(false); // controla qué formulario mostrar
 
-useEffect(() => {
-  const yaSuscrito = localStorage.getItem('yaSuscrito');
-  if (!yaSuscrito) {
+    useEffect(() => {
     registrarServiceWorkerYSuscribir();
-  }
-}, []);
+  }, []);
 
 
 
