@@ -102,6 +102,7 @@ export default function ProtectedRoute({ children }) {
         setAutorizado(true);
         toast.success('Acceso concedido');
         setClave('');
+        navigate('/admin/dashboard'); // Redirección al dashboard
       } else {
         toast.error(data.mensaje || 'Clave incorrecta');
       }
@@ -126,7 +127,7 @@ export default function ProtectedRoute({ children }) {
               placeholder="Ingrese nueva clave"
               className="form-control mb-3"
             />
-            <button type="submit" className="btn btn-success w-100">Crear clave</button>
+            <button type="submit" className="btn btn-danger w-100">Crear clave</button>
           </form>
         </div>
       </div>
