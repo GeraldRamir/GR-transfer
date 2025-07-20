@@ -50,6 +50,35 @@ export default function ProtectedRoute({ children }) {
       </div>
     );
   }
+  const crearClave = async () => {
+  if (!clave) {
+    alert('Por favor, escribe una clave.');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/clave`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ clave }),
+    });
+
+    if (!res.ok) {
+      throw new Error('No se pudo crear la clave.');
+    }
+
+    const data = await res.json();
+    localStorage.setItem('accesoAdmin', 'true');
+    setAutorizado(true);
+    navigate('/admin/dashboard');
+  } catch (error) {
+    console.error('Error creando la clave:', error);
+    alert('Hubo un problema al crear la clave.');
+  }
+};
+
 
   // El resto igual, con los formularios para crear o ingresar clave
 
