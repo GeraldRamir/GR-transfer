@@ -50,9 +50,12 @@ export default function ProtectedRoute({ children }) {
       </div>
     );
   }
-  const crearClave = async () => {
-  if (!clave) {
-    alert('Por favor, escribe una clave.');
+  
+const crearClave = async (e) => {
+  e.preventDefault();
+
+  if (!clave.trim()) {
+    toast.error('La clave no puede estar vacía');
     return;
   }
 
@@ -69,13 +72,12 @@ export default function ProtectedRoute({ children }) {
       throw new Error('No se pudo crear la clave.');
     }
 
-    const data = await res.json();
-    localStorage.setItem('accesoAdmin', 'true');
-    setAutorizado(true);
-    navigate('/admin/dashboard');
+    toast.success('✅ Clave creada correctamente');
+    setClave('');
+    setHayClave(true); // Se cambia el estado para mostrar el formulario de ingreso
   } catch (error) {
     console.error('Error creando la clave:', error);
-    alert('Hubo un problema al crear la clave.');
+    toast.error('❌ Hubo un problema al crear la clave.');
   }
 };
 
