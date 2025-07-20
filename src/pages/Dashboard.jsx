@@ -167,7 +167,6 @@ const crearClave = async (e) => {
       toast.success('✅ Clave creada correctamente');
       localStorage.setItem('accesoAdmin', 'true'); // <-- ✅ Guarda el acceso
       setHayClave(true);
-      setAutorizado(true); // <-- ✅ Ya estás autorizado
       setClave('');
     } else {
       const data = await res.json();
