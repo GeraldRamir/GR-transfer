@@ -33,7 +33,7 @@ function App() {
           <Route path="/admin/flotillasAdmin" element={<FlotillasAdmin />} />
           <Route path="/admin/destinosAdmin" element={<DestinosAdmin />} />
           <Route path="/admin/contactoAdmin" element={<ContactAdmin />} />
- <Route 
+        <Route 
           path="/admin/dashboard" 
           element={
             <ProtectedRoute>
