@@ -68,14 +68,14 @@ const handleSubmit = async (e) => {
     if (!res.ok) throw new Error('Error al enviar reserva');
 
     // ✅ Notificar al admin (solo post, sin esperar resultado)
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/notify`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: 'Nueva reserva',
-        body: `Reserva de ${form.nombre}`,
-      }),
-    }).catch(err => console.error('Error al notificar admin:', err));
+    // fetch(`${import.meta.env.VITE_BACKEND_URL}/api/notify`, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     title: 'Nueva reserva',
+    //     body: `Reserva de ${form.nombre}`,
+    //   }),
+    // }).catch(err => console.error('Error al notificar admin:', err));
 
     mostrarAlerta('success', 'Reserva enviada correctamente');
 
