@@ -50,8 +50,8 @@ export default function ProtectedRoute({ children }) {
       </div>
     );
   }
-  
-const crearClave = async (e) => {
+
+  const crearClave = async (e) => {
   e.preventDefault();
 
   if (!clave.trim()) {
@@ -82,6 +82,35 @@ const crearClave = async (e) => {
 };
 
 
+  const verificarClave = async (e) => {
+    e.preventDefault();
+    if (!clave.trim()) {
+      toast.error('Debes ingresar la clave');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/clave/verificar`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clave }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.acceso) {
+        localStorage.setItem('accesoAdmin', 'true');
+        setAutorizado(true);
+        toast.success('Acceso concedido');
+        setClave('');
+      } else {
+        toast.error(data.mensaje || 'Clave incorrecta');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('Error al verificar clave');
+    }
+  };
+
   // El resto igual, con los formularios para crear o ingresar clave
 
   if (!hayClave) {
@@ -97,7 +126,7 @@ const crearClave = async (e) => {
               placeholder="Ingrese nueva clave"
               className="form-control mb-3"
             />
-            <button type="submit" className="btn btn-primary w-100">Crear clave</button>
+            <button type="submit" className="btn btn-danger w-100">Crear clave</button>
           </form>
         </div>
       </div>
