@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom'; // Asegúrate de importar esto
+import Dashboard from './Dashboard';
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
 
 export default function ProtectedRoute({ children }) {
@@ -158,6 +159,8 @@ if (!autorizado) {
     </div>
   );
 }
+
+return <Dashboard />; // Si ya está autorizado, renderiza el Dashboard directamente
 
   // ... funciones crearClave, verificarClave, cerrarSesion igual que antes
 }
