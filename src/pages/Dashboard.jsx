@@ -99,6 +99,7 @@ export default function Dashboard() {
   const [clave, setClave] = useState('');
   const [autorizado, setAutorizado] = useState(false);
   const [hayClave, setHayClave] = useState(false);
+  const [mostrarCrear, setMostrarCrear] = useState(false); // controla qué formulario mostrar
 
 
   useEffect(() => {
@@ -300,26 +301,41 @@ const crearClave = async (e) => {
 // }
 
 
-  if (!autorizado) {
-    return (
-      <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
-        <div className="card shadow p-4 w-100" style={{ maxWidth: '400px' }}>
-          <h4 className="text-center mb-4">🔐 Acceso Admin</h4>
-          <form onSubmit={verificarClave}>
-            <input
-              type="password"
-              value={clave}
-              onChange={(e) => setClave(e.target.value)}
-              placeholder="Ingrese clave"
-              className="form-control mb-3"
-            />
-            <button type="submit" className="btn btn-primary w-100">Entrar</button>
-          </form>
-        </div>
-      </div>
-    );
-  }
+if (!autorizado) {
+  return (
+    <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
+      <div className="card shadow p-4 w-100" style={{ maxWidth: '400px' }}>
+        <h4 className="text-center mb-4">
+          {(!hayClave || mostrarCrear) ? '🛠 Crear clave de administrador' : '🔐 Acceso Admin'}
+        </h4>
 
+        <form onSubmit={(!hayClave || mostrarCrear) ? crearClave : verificarClave}>
+          <input
+            type="password"
+            value={clave}
+            onChange={(e) => setClave(e.target.value)}
+            placeholder={(!hayClave || mostrarCrear) ? "Ingrese nueva clave" : "Ingrese clave"}
+            className="form-control mb-3"
+          />
+          <button type="submit" className={`btn w-100 ${(!hayClave || mostrarCrear) ? 'btn-success' : 'btn-primary'}`}>
+            {(!hayClave || mostrarCrear) ? 'Crear clave' : 'Entrar'}
+          </button>
+        </form>
+
+        {/* Enlace para cambiar de modo */}
+        {(hayClave || mostrarCrear) && (
+          <button
+            type="button"
+            className="btn btn-link mt-3 w-100"
+            onClick={() => setMostrarCrear(!mostrarCrear)}
+          >
+            {mostrarCrear ? 'Ya tengo una clave' : 'Crear nueva clave'}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
   return (
     <>
     {/* <!-- Header Start --> */}
