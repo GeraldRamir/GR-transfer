@@ -304,39 +304,38 @@ const crearClave = async (e) => {
 
 
 if (!autorizado) {
-  return (
-    <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
-      <div className="card shadow p-4 w-100" style={{ maxWidth: '400px' }}>
-        <h4 className="text-center mb-4">
-          {(!hayClave || mostrarCrear) ? '🛠 Crear clave de administrador' : '🔐 Acceso Admin'}
-        </h4>
+return (
+  <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
+    <div className="card shadow p-4 w-100" style={{ maxWidth: '400px' }}>
+      <h4 className="text-center mb-4">
+        {(!hayClave || mostrarCrear) ? '🛠 Crear clave de administrador' : '🔐 Acceso Admin'}
+      </h4>
 
-        <form onSubmit={(!hayClave || mostrarCrear) ? crearClave : verificarClave}>
-          <input
-            type="password"
-            value={clave}
-            onChange={(e) => setClave(e.target.value)}
-            placeholder={(!hayClave || mostrarCrear) ? "Ingrese nueva clave" : "Ingrese clave"}
-            className="form-control mb-3"
-          />
-          <button type="submit" className={`btn w-100 ${(!hayClave || mostrarCrear) ? 'btn-success' : 'btn-primary'}`}>
-            {(!hayClave || mostrarCrear) ? 'Crear clave' : 'Entrar'}
-          </button>
-        </form>
+      <form onSubmit={(!hayClave || mostrarCrear) ? crearClave : verificarClave}>
+        <input
+          type="password"
+          value={clave}
+          onChange={(e) => setClave(e.target.value)}
+          placeholder={(!hayClave || mostrarCrear) ? "Ingrese nueva clave" : "Ingrese clave"}
+          className="form-control mb-3"
+        />
+        <button type="submit" className={`btn w-100 ${(!hayClave || mostrarCrear) ? 'btn-success' : 'btn-primary'}`}>
+          {(!hayClave || mostrarCrear) ? 'Crear clave' : 'Entrar'}
+        </button>
+      </form>
 
-        {/* Enlace para cambiar entre modos */}
-        {hayClave && (
-          <button
-            type="button"
-            className="btn btn-link mt-3 w-100"
-            onClick={() => setMostrarCrear(!mostrarCrear)}
-          >
-            {mostrarCrear ? 'Ya tengo una clave' : 'Crear nueva clave'}
-          </button>
-        )}
-      </div>
+      {/* Enlace para cambiar entre modos (siempre visible) */}
+      <button
+        type="button"
+        className="btn btn-link mt-3 w-100"
+        onClick={() => setMostrarCrear(!mostrarCrear)}
+      >
+        {mostrarCrear ? 'Ya tengo una clave' : 'Crear nueva clave'}
+      </button>
     </div>
-  );
+  </div>
+);
+
 }
 
   return (
@@ -563,7 +562,7 @@ if (!autorizado) {
                 Eliminar
               </button>
             </div>
-            <p className="mb-1">📞 <a href={`https://wa.me/${r.telefono}`} target="_blank" rel="noopener noreferrer">{r.telefono}</a></p>
+            <p className="mb-1 color-success">📞 <a href={`https://wa.me/${r.telefono}`} target="_blank" rel="noopener noreferrer">{r.telefono}</a></p>
             <p className="mb-1">✈️ Destino: <strong>{r.destino}</strong></p>
             <p className="mb-1">📅 <strong>{r.fecha}</strong></p>
             <p className="mb-1">👥 {r.personas} persona(s)</p>
