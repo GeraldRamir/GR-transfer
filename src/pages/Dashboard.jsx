@@ -562,7 +562,15 @@ return (
                 Eliminar
               </button>
             </div>
-            <p className="mb-1 color-success">📞 <a href={`https://wa.me/${r.telefono}?text=Hola,%20gracias%20por%20reservar%20con%20GR%20TRANSFER`} target="_blank" rel="noopener noreferrer">{r.telefono}</a></p>
+<p className="mb-1 color-success">📞 
+  <a 
+    href={`https://wa.me/${encodeURIComponent(r.telefono)}?text=${encodeURIComponent('Hola, gracias por reservar con GR TRANSFER')}`} 
+    target="_blank" 
+    rel="noopener noreferrer">
+    {r.telefono}
+  </a>
+</p>
+
             <p className="mb-1">✈️ Destino: <strong>{r.destino}</strong></p>
             <p className="mb-1">📅 <strong>{r.fecha}</strong></p>
             <p className="mb-1">👥 {r.personas} persona(s)</p>
