@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import '../css/style.css'; // Asegúrate de que tu CSS personalizado esté importado
 import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de que Bootstrap esté importado
+import ModalMantenimiento from './ModalMantenimiento';
 
 
 
@@ -48,23 +49,32 @@ const Admin = () => {
 
   const [loading, setLoading] = useState(true)
     const [selected, setSelected] = useState(null);
+      const [showModal, setShowModal] = useState(true); // Control del modal
 
-    const handleClose = () => setSelected(null);
-      useEffect(() => {
-      const script = document.createElement('script');
-      script.src = 'https://static.elfsight.com/platform/platform.js';
-      script.defer = true;
-      document.body.appendChild(script);
-    }, []);
+     const handleClose = () => setSelected(null);
+  const handleCloseModal = () => setShowModal(false); // Cerrar el modal manualmente
 
-    useEffect(() => {
-      // Simula carga, o aquí podrías hacer fetch de datos
-      const timer = setTimeout(() => {
-        setLoading(false) // Oculta spinner después de 1.5 seg o cuando termines tu lógica
-      }, 1500)
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.defer = true;
+    document.body.appendChild(script);
 
-      return () => clearTimeout(timer)
-    }, [])
+    // Cerrar modal después de 7 segundos
+    const timer = setTimeout(() => {
+      setShowModal(false);
+    }, 15000);
+
+    return () => clearTimeout(timer); // Limpiar el temporizador cuando el componente se desmonte
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false); // Ocultar spinner después de 1.5 seg o cuando termines tu lógica
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
       if (loading) {
       // Mostrar spinner mientras loading sea true
@@ -76,15 +86,23 @@ const Admin = () => {
         </div>
       )
     }
+    
     return (
-      <>
 
+
+      <>
         <div className="container-fluid bg-white p-0 min-vh-100">
           <div className="container-fluid bg-white p-0 min-vh-100">
+            <ModalMantenimiento
+              show={showModal}
+              onClose={handleCloseModal}
+              title="Aviso Importante: "
+            
+            />
 
   {/* <!-- Header Start --> */}
   <div
-    className="container-fluid px-0"
+    className="container-flu`id px-0"
     style={{
       backgroundColor: '#1ABC9C',
       marginBottom: '-20px',
@@ -404,7 +422,15 @@ const Admin = () => {
   <div className="container-fluid py-5 mt-5">
     {/* <!-- contenido siguiente --> */}
   </div>
-
+    {/* <ModalMantenimiento
+      show={isModalVisible}
+        onClose={closeModal}
+        title="Aviso Importante: Mantenimiento de Sistema"
+        content="Se informa a los usuarios que, debido a tareas de mantenimiento programado en el servidor y la base de datos, es posible que el sistema experimente interrupciones temporales en los próximos días. Pedimos disculpas por cualquier inconveniente y agradecemos su comprensión. Se recomienda realizar las operaciones críticas antes de la ventana de mantenimiento para evitar posibles inconvenientes."
+        actionText="Más Información"
+        actionLink="https://example.com/mantenimiento" // Puedes cambiar este enlace a la página que desees
+      />
+       */}
     {/* SECCIÓN PRINCIPAL */}
         <div className="container my-5 py-5 wow fadeIn" data-wow-delay="0.2s">
           <div className="text-center mb-5">

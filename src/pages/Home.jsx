@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import '../css/style.css'; // Asegúrate de que tu CSS personalizado esté importado
 import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de que Bootstrap esté importado
+import ModalMantenimiento from './ModalMantenimiento';
 
 
 import '../css/index.css'; // Asegúrate de que tu CSS personalizado esté importado 
@@ -45,23 +46,33 @@ const Home = () => {
 
 const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState(null);
-
-  const handleClose = () => setSelected(null);
-    useEffect(() => {
+        const [showModal, setShowModal] = useState(true); // Control del modal
+  
+       const handleClose = () => setSelected(null);
+    const handleCloseModal = () => setShowModal(false); // Cerrar el modal manualmente
+  
+  useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://static.elfsight.com/platform/platform.js';
     script.defer = true;
     document.body.appendChild(script);
+
+    // Cerrar modal después de 7 segundos
+    const timer = setTimeout(() => {
+      setShowModal(false);
+    }, 15000);
+
+    return () => clearTimeout(timer); // Limpiar el temporizador cuando el componente se desmonte
   }, []);
 
   useEffect(() => {
-    // Simula carga, o aquí podrías hacer fetch de datos
     const timer = setTimeout(() => {
-      setLoading(false) // Oculta spinner después de 1.5 seg o cuando termines tu lógica
-    }, 1500)
+      setLoading(false); // Ocultar spinner después de 1.5 seg o cuando termines tu lógica
+    }, 1500);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
+
 
     if (loading) {
     // Mostrar spinner mientras loading sea true
@@ -78,6 +89,13 @@ const [loading, setLoading] = useState(true)
 
       <div className="container-fluid bg-white p-0 min-vh-100">
         <div className="container-fluid bg-white p-0 min-vh-100">
+             <ModalMantenimiento
+                        show={showModal}
+                        onClose={handleCloseModal}
+                        title="Aviso Importante: "
+                      
+                      />
+          
 
 {/* <!-- Header Start --> */}
 <div
