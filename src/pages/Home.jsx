@@ -89,12 +89,12 @@ const [loading, setLoading] = useState(true)
 
       <div className="container-fluid bg-white p-0 min-vh-100">
         <div className="container-fluid bg-white p-0 min-vh-100">
-             <ModalMantenimiento
+             {/* <ModalMantenimiento
                         show={showModal}
                         onClose={handleCloseModal}
                         title="Aviso Importante: "
                       
-                      />
+                      /> */}
           
 
 {/* <!-- Header Start --> */}
