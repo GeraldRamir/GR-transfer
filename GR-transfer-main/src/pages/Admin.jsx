@@ -235,35 +235,6 @@ const Admin = () => {
   </div>
   {/* <!-- Header End --> */}
 
-          {/* <!-- Alerta de Mantenimiento --> */}
-          <div className="container-fluid px-0">
-            <div className="alert alert-warning alert-dismissible fade show m-0 rounded-0" role="alert" style={{ 
-              backgroundColor: '#FFC107', 
-              border: 'none',
-              borderBottom: '3px solid #FF9800',
-              borderRadius: '0'
-            }}>
-              <div className="container">
-                <div className="d-flex align-items-center justify-content-between">
-                  <div className="d-flex align-items-center">
-                    <i className="fas fa-exclamation-triangle me-3" style={{ fontSize: '1.5rem' }}></i>
-                    <div>
-                      <strong className="d-block mb-1">⚠️ Sistema Requiere Mantenimiento</strong>
-                      <span className="d-block">El sistema requiere mantenimiento. Por favor, contacte con el desarrollador para más información.</span>
-                    </div>
-                  </div>
-                  <a 
-                    href="https://wa.me/18099810798?text=Hola,%20necesito%20información%20sobre%20el%20mantenimiento%20del%20sistema"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-dark btn-sm ms-3"
-                  >
-                    <i className="fab fa-whatsapp me-2"></i>Contactar Desarrollador
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* <!-- Carousel Start --> */}
   <div className="container-fluid p-0 mb-5">

@@ -197,35 +197,6 @@ const [loading, setLoading] = useState(true)
 </div>
         {/* <!-- Header End --> */}
 
-        {/* <!-- Alerta de Mantenimiento --> */}
-        <div className="container-fluid px-0">
-          <div className="alert alert-warning alert-dismissible fade show m-0 rounded-0" role="alert" style={{ 
-            backgroundColor: '#FFC107', 
-            border: 'none',
-            borderBottom: '3px solid #FF9800',
-            borderRadius: '0'
-          }}>
-            <div className="container">
-              <div className="d-flex align-items-center justify-content-between flex-wrap">
-                <div className="d-flex align-items-center mb-2 mb-md-0">
-                  <i className="fas fa-exclamation-triangle me-3" style={{ fontSize: '1.5rem' }}></i>
-                  <div>
-                    <strong className="d-block mb-1">⚠️ Sistema Requiere Mantenimiento</strong>
-                    <span className="d-block">El sistema requiere mantenimiento. Por favor, contacte con el desarrollador para más información.</span>
-                  </div>
-                </div>
-                <a 
-                  href="https://wa.me/18099810798?text=Hola,%20necesito%20información%20sobre%20el%20mantenimiento%20del%20sistema"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-dark btn-sm ms-md-3"
-                >
-                  <i className="fab fa-whatsapp me-2"></i>Contactar Desarrollador
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* <!-- Page Header Start --> */}
     <div className="container-fluid page-header mb-5 p-0 position-relative" style={{backgroundImage: 'url(../img/bg-servicios.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
